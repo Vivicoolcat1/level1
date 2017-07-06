@@ -78,7 +78,7 @@ public class SimonSaysRecipe extends KeyAdapter {
     	// 8. set the size of the frame 
      	frame.setSize(800, 800);
     	// 9. add a key listener to the frame
-	frame.addKeyListener(null);
+	frame.addKeyListener(this);
    	 //10. Use the speak method to either say "Simon says press this key" or "Press this key"
     	//Hint: use the simonSays int and a random number
 	simonSays=new Random().nextInt(2);
@@ -117,7 +117,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 /* 
 * 20. add a timer
 * ~~~ where the code starts running ~~~
-* timeAtStart = new Date();
+ *timeAtStart = new Date();
 *
 * ~~~ where the code ends ~~~
 * Date timeAtEnd = new Date();
