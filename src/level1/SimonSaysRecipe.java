@@ -24,6 +24,8 @@ public class SimonSaysRecipe extends KeyAdapter {
  	private int tries = 0;
  	private int simonSays = 0;
  	Date timeAtStart;
+ 	int point = 0;
+
  	private  void makeAlbum() {
  // 2. add 4 images which match keyboard keys like this: images.put(new Integer(KeyEvent.VK_UP), "image.jpg");
  		images.put(new Integer(KeyEvent.VK_UP), "uparrow.png");
@@ -38,7 +40,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
     	int keyCode = e.getKeyCode();
     	// 16. make a points variable to track the score. tell the user their score at the end.
-    	int point = 0;
+    	
     	
     	//17. if the keyCode matches the imageIndex and "Simon says..."  increase their score
     	if(keyCode == imageIndex && simonSays ==1){
@@ -52,6 +54,7 @@ public class SimonSaysRecipe extends KeyAdapter {
     	else {
     		speak ("incorrect un happy face");
     	}
+    
     	//18.   if the keyCode doesn't match the imageIndex and "Simon didn't say..."  increase their score	
     	//19. Use the speak method to tell the user if they were correct or not
     	//13. increment tries by 1
@@ -62,7 +65,7 @@ public class SimonSaysRecipe extends KeyAdapter {
     	//14. if tries is greater than 9 (or however many you want)
     	if(tries >= 10){
     	//15.    	exit the program
-    	              System.exit(0);    }
+    	          speak("You have " + point + " points");   System.exit(0);    }
     	//11. dispose of the frame
    	frame.dispose();
     	//12. call the method to show an image
