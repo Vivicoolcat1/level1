@@ -19,6 +19,7 @@ public class Tweet implements ActionListener {
 JFrame frame = new JFrame();
 JPanel panel = new JPanel();
 JButton button = new JButton("Check tweets");
+
 JTextField tf = new JTextField(70);
 public static void main(String[] args) {
 	Tweet t = new Tweet();
@@ -44,6 +45,9 @@ void run() {
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	System.out.println("Tweet, Tweet");
+	String searchingFor= tf.getText();
+String a=	getLatestTweet(searchingFor);
+System.out.println(a);
 }
 
 private String getLatestTweet(String searchingFor) {
