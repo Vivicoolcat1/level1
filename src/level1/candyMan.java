@@ -18,22 +18,27 @@ import javax.swing.JPanel;
 
 public class candyMan implements ActionListener {
 	int timesClicked = 0;
-
+public static void main(String[] args) {
+	candyMan a = new candyMan();
+	a.runner();
+}
 	public void runner() {
+		
 		JPanel panel = new JPanel();
 		JFrame frame = new JFrame();
 		JButton button = new JButton("Candy Man");
 		frame.add(panel);
 		panel.add(button);
 		button.addActionListener(this);
+		frame.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (timesClicked == 5) {
-			showPictureFromTheInternet("scary.jpg");
-			showPictureFromTheInternet("scream.wav");
+			showPictureFromTheInternet("http://ihorror.com/wp-content/uploads/2015/01/ring1.jpg");
+		playSound(SCREAM);
 		} else {
 timesClicked ++;
 		}
