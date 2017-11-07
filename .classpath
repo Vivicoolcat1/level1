@@ -5,6 +5,5 @@
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/commons-logging-1.1.3-2.jar"/>
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/twitter4j-core-3.0.5-2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Users/League/Desktop/Copy of Tortoise.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
