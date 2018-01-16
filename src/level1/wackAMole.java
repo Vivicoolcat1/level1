@@ -1,10 +1,12 @@
 package level1;
 
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -167,6 +169,11 @@ public class wackAMole implements ActionListener {
 			e.printStackTrace();
 		}
 	}
+	private void playSound(String fileName) {
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+		sound.play();
+	}
+
 	private void endGame(Date timeAtStart, int molesWhacked) {
 		Date timeAtEnd = new Date();
 		JOptionPane.showMessageDialog(null, "Your whack rate is "
@@ -176,114 +183,114 @@ public class wackAMole implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
-		if (b.equals(e.getSource()) && 0 != number2) {
+JButton buttonPressed = (JButton)e.getSource();
+		if (b == buttonPressed  && 0 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 
 		}
 
-		else if (c.equals(e.getSource()) && 1 != number2) {
+		else if (c== buttonPressed  && 1 != number2) {
 			
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (d.equals(e.getSource()) && 2 != number2) {
+		else if (d == buttonPressed  && 2 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (e1.equals(e.getSource()) && 3 != number2) {
+		else if (e1 == buttonPressed  && 3 != number2) {
 			
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (f.equals(e.getSource()) && 4 != number2) {
+		else if (f== buttonPressed  && 4 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (g.equals(e.getSource()) && 5 != number2) {
+		else if (g==buttonPressed  && 5 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (h.equals(e.getSource()) && 6 != number2) {
+		else if (h == buttonPressed  && 6 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (i.equals(e.getSource()) && 7 != number2) {
+		else if (i==buttonPressed  && 7 != number2) {
 
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (j.equals(e.getSource()) && 8 != number2) {
+		else if (j==buttonPressed  && 8 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (k.equals(e.getSource()) && 9 != number2) {
+		else if (k==buttonPressed  && 9 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (l.equals(e.getSource()) && 10 != number2) {
+		else if (l==buttonPressed  && 10 != number2) {
 			
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (m.equals(e.getSource()) && 11 != number2) {
+		else if (m==buttonPressed  && 11 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (n.equals(e.getSource()) && 12 != number2) {
+		else if (n==buttonPressed && 12 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (o.equals(e.getSource()) && 13 != number2) {
+		else if (o==buttonPressed && 13 != number2) {
 			
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (p.equals(e.getSource()) && 14 != number2) {
+		else if (p==buttonPressed && 14 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (q.equals(e.getSource()) && 15 != number2) {
+		else if (q==buttonPressed  && 15 != number2) {
 		
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (r.equals(e.getSource()) && 16 != number2) {
+		else if (r==buttonPressed  && 16 != number2) {
 	
 			frame.dispose();
 			noMole ++;
 		}
 
-		else if (s.equals(e.getSource()) && 17 != number2) {
+		else if (s==buttonPressed  && 17 != number2) {
 	
 			frame.dispose();
-			noMole ++;
+			noMole++;
 		} else {
 			System.out.println("hi");
 			frame.dispose();
@@ -291,7 +298,10 @@ public class wackAMole implements ActionListener {
 			System.out.println("You have hit the mole " + score + " time(s)");
 			
 		}
-		if(noMole == 1) {
+		 if(buttonPressed.getText().equals("mole")){ 
+			  playSound("yay.wav");}
+				else {
+						if(noMole == 1) {
 			speak("dork");
 			
 		}
@@ -300,13 +310,17 @@ public class wackAMole implements ActionListener {
 		}
 		else if(noMole == 3) {
 			speak("moron");}
-			else if(noMole ==4 ) {
+			else if(noMole >=4 && noMole <=10 ) {
 				speak("waste of atoms");}
+		
+			
+				}
 		//setup();
 		run();
 		System.out.println(number2);
 		if(score == 10) {
 		endGame(TAS,score);}
+		
 		
 }
 }
