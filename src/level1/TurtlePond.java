@@ -19,35 +19,36 @@ import org.teachingextensions.logo.Tortoise;
 public class TurtlePond implements KeyEventDispatcher {
 
 	// 1. Set a location for the cookie
-	int cookieX = 400;
-	int cookieY = 500;
+	int cookieX = 150;
+	int cookieY = 200;
 
 	// 2. Choose the speed you want the Tortoise to go at
 	int speed = 10;
-	
+
 	void setup() {
 		// 3. Edit this intro message to your own style
-		JOptionPane.showMessageDialog(null, "Move the turtle with the arrow keys to find the hidden cookie.\nYou'll get warmer the closer you get.\n\nHurry or she'll die of hunger!");
-		
+		JOptionPane.showMessageDialog(null,
+				"Move the turtle with the arrow keys to find the hidden cookie.\nYou'll get warmer the closer you get.\n\nHurry or she'll die of hunger!");
+
 		// 4. For debugging purposes, show the cookie. The user won’t see this.
-showCookie();
+		// showCookie();
 	}
 
 	private void goUp() {
-		Tortoise.setAngle(180);
+		Tortoise.setAngle(0);
 		Tortoise.move(speed);
 	}
 
 	private void goDown() {
-		Tortoise.setAngle(360);
-		Tortoise.move(-speed);
+		Tortoise.setAngle(180);
+		Tortoise.move(speed);
 	}
 
 	private void goLeft() {
 		// 5. make the tortoise move left at the specified speed (3 lines of code)
-Tortoise.setAngle(270);
+		Tortoise.setAngle(270);
 		Tortoise.move(speed);
-	
+
 	}
 
 	private void goRight() {
@@ -60,23 +61,55 @@ Tortoise.setAngle(270);
 		int tortoiseLocationX = Tortoise.getX();
 		int tortoiseLocationY = Tortoise.getY();
 
-		// 7. If the Tortoise is within 100 pixels of the food, set the background color to yellow
+		// 7. If the Tortoise is within 100 pixels of the food, set the background color
+		// to yellow
+		double d = Math.sqrt((tortoiseLocationX - cookieX) * (tortoiseLocationX - cookieX)
+				+ (tortoiseLocationY - cookieY) * (tortoiseLocationY - cookieY));
+		if (d <= 100) {
+			setBackgroundColor(Color.YELLOW);
+		}
+		// 8. If the Tortoise is within 50 pixels of the food, set the background color
+		// to orange
+		if (d <= 50) {
+			setBackgroundColor(Color.ORANGE);
+		}
 
-		// 8. If the Tortoise is within 50 pixels of the food, set the background color to orange
+		// 9. If the Tortoise is within 20 pixels of the food, set the background color
+		// to
+		if (d <= 20) {
+			setBackgroundColor(Color.RED);
+		}
 
-		// 9. If the Tortoise is within 20 pixels of the food, set the background color to red
+		// 10. If the Tortoise is within 5 pixels of the cookie, make a pop-up to tell
+		// them they found it
+		if (d <= 5) {
+			JOptionPane.showMessageDialog(null, "You found the cookie !!");
+		}
+		// 11. If more than 20 seconds have elapsed, tell them the turtle died of
+		// hunger!
+		if (getTimeElapsed() == 60) {
+			JOptionPane.showMessageDialog(null, "Your turtle has died R.I.P :{");
 
-		// 10. If the Tortoise is within 5 pixels of the cookie, make a pop-up to tell them they found it
-				
-		// 11. If more than 20 seconds have elapsed, tell them the turtle died of hunger!
+		}
+		// 12. If the Tortoise crosses it's own path, tell them they failed and move
+		// them back to the beginning
+		if (wasHereBefore(tortoiseLocationX, tortoiseLocationY)) {
+			JOptionPane.showMessageDialog(null, "You failed");
+			Point x = getFirstLocation();
+			Double a = x.getX();
+			Double b = x.getY();
+			int c = a.intValue();
+			int e = b.intValue();
+			Tortoise.penUp();
+			Tortoise.moveTo(c, e);
 
-		// 12. If the Tortoise crosses it's own path, tell them they failed and move them back to the beginning
-
+		}
+		Tortoise.penDown();
 	}
-	
+
 	private long getTimeElapsed() {
-		 Date currentTime = new Date();
-		 return (currentTime.getTime() - startTime.getTime())/1000;
+		Date currentTime = new Date();
+		return (currentTime.getTime() - startTime.getTime()) / 1000;
 	}
 
 	private void setBackgroundColor(Color color) {
@@ -102,7 +135,9 @@ Tortoise.setAngle(270);
 		return previousLocations.get(0);
 	}
 
-	/*********************** don't worry about the stuff under here ******************/
+	/***********************
+	 * don't worry about the stuff under here
+	 ******************/
 
 	Date startTime = new Date();
 
@@ -149,6 +184,3 @@ Tortoise.setAngle(270);
 		previousLocations.add(new Point(xPosition, yPosition));
 	}
 }
-
-
-
