@@ -4,6 +4,7 @@ void setup(){
   
 
 }  
+int score = 0;
   int y = 10;
 int x=0;
   void draw(){
@@ -24,9 +25,18 @@ int x=0;
        x = (int) random(500);
      }
      
-     rect(250, 480,100 , 100);{}
+     rect(mouseX, 480,100 , 100);{}
 
-
- 
+checkCatch(x);
+ if(mouseX== x){
+ s
+ }
      
   }
+  void checkCatch(int x){
+if (x > mouseX && x < mouseX+100)
+      score++;
+   else if (score > 0)
+     score--;
+println("Your score is now: " + score);
+}
