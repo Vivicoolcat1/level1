@@ -44,7 +44,11 @@ ballxspeed = 10;
    ballyspeed = 10;
  }
  rect(mouseX,paddley,paddlew,paddleh);
- intersects(ballx,bally,mouseX ,paddley, paddlew);
+ if(intersects(ballx,bally,mouseX ,paddley, paddlew)){
+ println("Hit");
+ ballyspeed += -10;
+ 
+ }
  
 
 
