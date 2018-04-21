@@ -1,24 +1,28 @@
+ 
 void setup(){
+
   size(500,500);
   background(199,204,255);
   
   
 }
 
-int birdx = 50;
-int birdy = 250;
-int birdw = 50;
-int birdh = 50;
+float birdx = 50;
+float birdy = 250;
+float birdw = 50;
+float birdh = 50;
 double birdYV = 1;
 double birdYG = .1;
-int pipeX = 450;
-int  pipeY = 200;
-int pipeW =50;
+float pipeX = 450;
+float  pipeY = 250;
+float pipeW =50;
 float pipeH = 300;
-int pipeX2 = 450;
-int  pipeY2 = 100;
-int pipeW2 =50;
+float pipeX2 = 450;
+float  pipeY2 = 100;
+float pipeW2 =50;
 float pipeH2= -300;
+float gapLength = 100;
+int score=0;
 void draw(){
   background(199,204,255);
   fill(255,255,0);
@@ -39,47 +43,73 @@ birdYV += birdYG;
   
 
   
-if (pipeX < 50){
+if (pipeX < -50){
 pipeX = 500;
-pipeH = random(0, 250); ;
-}
-if (pipeX2 < 50){
-pipeX = 500;
-pipeH2 = random(0, -250); ;
-}
- Boolean intersects2 = intersects(birdx,birdy,pipeX,pipeY,pipeW);
- Boolean intersects3 = intersectsT(birdx,birdy,pipeX2,pipeY2,pipeW2);
 
+pipeY = random(250,400 ); ;
+}
+if (pipeX2 < -50){
+pipeX2 = 500;
+score++;
+pipeH2 = pipeH;
+}
+pipeH2 -= pipeH + gapLength; 
+ Boolean intersects2 = intersectsB(birdx,birdy,pipeX,pipeY,pipeW,pipeH);
+ Boolean intersects3 = intersectsT(birdx,birdy,pipeX2,pipeY2,pipeW2,pipeH2);
+ fill(255);
+ textSize (20);
+text("your score is "+ score,100,50);
 if(intersects2 == true){
-  fill(255);
+ fill(255);
   textSize(30);
- text("you loose",250,250);
-if(intersects3 == true){
+text("you loose. Your finall score is " + score,100,250);
+
+exit();}
+
+else if(intersects3 == true){
   fill(255);
-  textSize(30);
- text("you loose",250,250);
-exit();
+ textSize(30);
+ text("you loose. Your finall score is " + score,100,250);;
+
+exit();}
+
+else if (birdy> 500){
+    fill(255);
+ textSize(20);
+text("you loose. Your finall score is " + score,100,250);
+ 
+exit();}
 }
-}
 
 
 
 
 
-}
 
 
 
-void mousePressed(){
-  birdYV += -5;
+
+
+
+
+
+ void mousePressed(){
+  birdYV = -5;
+
+ }  
   
   
-  
 
+
+
+boolean intersectsB(float birdX, float birdY, float pipeX, float pipeY, float pipeW, float pipeH) {
+if (birdX >pipeX && birdX < pipeX + pipeW && birdY > pipeY)
+return true;
+else 
+return false;
 }
-
-boolean intersectsT(int birdX, int birdY, int paddleX, int paddleY, int paddleLength, int pipeH) {
-if (birdY > paddleY - 4 && birdX > pipeH && birdX < paddleX + paddleLength)
+boolean intersectsT(float birdX, float birdY, float pipeX2, float pipeY2, float pipeW2, float pipeH2) {
+if (birdX >pipeX2 && birdX < pipeX2 + pipeW2 && birdY < pipeY2)
 return true;
 else 
 return false;
