@@ -19,18 +19,38 @@ void setup(){
 }
 int frogX =200;
 int frogY = 375;
-void draw(){
   
+ 
+ 
+ Car car =new Car(10,100,100,50,10);
+ Car car2 =new Car(10,200,100,50,10);
+ Car car3 =new Car(10,250,100,50,10);
+ Car car4 =new Car(10,300,100,50,10);
+ Car car5 =new Car(10,50,100,50,10);
+void draw(){
+
   background(0,255,255);
   fill(0,221,0);
+ car.display();
+ car2.display();
+ car3.display();
+ car4.display();
+ car5.display();
+ car.MoveRight();
+  car2.Moveleft();
+   car3.MoveRight();
+    car4.Moveleft();
+     car5.MoveRight();
+     
  Boolean check = canvasCheck(frogX,frogY);
   ellipse(frogX,frogY,25,25);
   if(check == false){
     frogX = 200;
     frogY = 375;
-    Car car =new c
+   
   }
-  
+   
+   
 }
 void keyPressed()
 {
@@ -91,9 +111,15 @@ public class Car{
    void display() 
   {
     fill(0,255,0);
-    rect(carX , carY, carW,carH,50);
-  }
-
-}
-
   
+    rect(carX,carY,carW,carH,carS);
+  }
+void MoveRight(){
+  carX += 10;
+  
+}
+void Moveleft(){
+  carX += -10;
+  
+}
+}
