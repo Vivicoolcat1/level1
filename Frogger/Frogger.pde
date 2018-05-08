@@ -22,11 +22,11 @@ int frogY = 375;
   
  
  
- Car car =new Car(10,100,100,50,10);
- Car car2 =new Car(10,200,100,50,10);
- Car car3 =new Car(10,250,100,50,10);
- Car car4 =new Car(10,300,100,50,10);
- Car car5 =new Car(10,50,100,50,10);
+ Car car =new Car(10,25,100,50,10);
+ Car car2 =new Car(490,100,100,50,10);
+ Car car3 =new Car(10,175,100,50,10);
+ Car car4 =new Car(490,250,100,50,10);
+ Car car5 =new Car(10,300,100,50,10);
 void draw(){
 
   background(0,255,255);
@@ -43,6 +43,8 @@ void draw(){
      car5.MoveRight();
      
  Boolean check = canvasCheck(frogX,frogY);
+ 
+
   ellipse(frogX,frogY,25,25);
   if(check == false){
     frogX = 200;
@@ -57,23 +59,23 @@ void keyPressed()
   if(key == CODED){
       if(keyCode == UP)
       {
-      frogY -= 5;
+      frogY -= 10;
       }
       else if(keyCode == DOWN)
       {
-        frogY += 5;
+        frogY += 10;
       }
       else if(keyCode == RIGHT)
       {
-    frogX += 5;
+    frogX += 10;
       }
       else if(keyCode == LEFT)
       {
-       frogX -= 5;
+       frogX -= 10;
       }
    }
 }
-Boolean canvasCheck (int frogX, int frogY ){
+ Boolean canvasCheck (int frogX, int frogY ){
   if (frogX < 0){
     return false;
     
@@ -114,12 +116,34 @@ public class Car{
   
     rect(carX,carY,carW,carH,carS);
   }
-void MoveRight(){
-  carX += 10;
-  
+public void MoveRight(){
+  carX += 5;
+  if(carX >= 400){
+    carX=10;}
+   
+   
+    
 }
-void Moveleft(){
-  carX += -10;
-  
+public void Moveleft(){
+  carX += -5;
+ if ( carX <=0){
+      carX= 490;
+    }
+}
+
+public  int getCarX (){
+    return this.carX;
+  }
+  public  int getCarY (){
+    return this.carY;
+  }
+  public int getCarS (){
+    return this.carS;
+  }
+  boolean intersects(Car car) {
+if ((frogY > car.getCarY() && frogY < car.getCarY()+50) && (frogX > car.getCarX() && frogX < car.getCarX()+car.getCarS()))
+          return true;
+    else 
+        return false;
 }
 }
